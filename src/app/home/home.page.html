@@ -1,20 +1,122 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+    <!-- <ion-toolbar class="ion-padding"> -->
+    <ion-searchbar (ionInput)="searchTodos($event)" placeholder="Search todo..."></ion-searchbar>
+    <!-- </ion-toolbar> -->
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content id="todo-container" [fullscreen]="true" class="ion-padding" (swipe)="exitDeleteTodos($event)">
+    <ng-container *ngIf="searchLenth !== 0; else searchedTodosBlock">
+        <ion-reorder-group (ionItemReorder)="doReorderSeaarchedTodos($event)" disabled="false">
+            <ion-item lines="none" *ngFor="let todo of searchedTodos; let i = index" (click)="isClick? viewTodo(todo.id) : ''" (press)="showRadioButton()">
+                <ion-list lines="none">
+                    <ion-item-sliding>
+                        <ion-item-options side="start"></ion-item-options>
+                        <ion-item>
+                            <ion-card>
+                                <ion-card-content>
+                                    <div id="todo-title-heading">
+                                        <ion-reorder slot="start"></ion-reorder>
+                                        <ion-label>{{todo.title}}</ion-label>
+                                    </div>
+                                    <ng-container *ngIf="showCheckbox === true">
+                                        <ion-checkbox slot="end" (ionChange)="getChecked($event, todo, i)" color="dark"></ion-checkbox>
+                                    </ng-container>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-item>
+                        <ion-item-options side="end"></ion-item-options>
+                    </ion-item-sliding>
+                </ion-list>
+            </ion-item>
+        </ion-reorder-group>
+        <ng-container *ngIf="searchedTodos.length < 1">
+            <ion-card id="no-data-found-card">
+                <ion-card-content id="app-no-data-image">
+                    <ion-label>NO TODOS FOUND!</ion-label>
+                    <ion-img src="./assets/images/no-data-found.png"></ion-img>
+                </ion-card-content>
+            </ion-card>
+        </ng-container>
+    </ng-container>
+    <ng-template #searchedTodosBlock>
+        <ion-reorder-group (ionItemReorder)="doReorderUndoneTodos($event)" disabled="false">
+            <ion-item lines="none" *ngFor="let todo of undoneTodos; let i = index" (click)="isClick? viewTodo(todo.id) : ''" (press)="showRadioButton()">
+                <ion-list lines="none">
+                    <ion-item-sliding>
+                        <ion-item-options side="start" (ionSwipe)="moveToDone(todo, i)"></ion-item-options>
+                        <ion-item>
+                            <ion-card>
+                                <ion-card-content>
+                                    <div id="todo-title-heading">
+                                        <ion-reorder slot="start"></ion-reorder>
+                                        <ion-label>{{todo.title}}</ion-label>
+                                    </div>
+                                    <ng-container *ngIf="showCheckbox === true">
+                                        <ion-checkbox slot="end" (ionChange)="getChecked($event, todo, i)" color="dark"></ion-checkbox>
+                                    </ng-container>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-item>
+                        <ion-item-options side="end">
+                        </ion-item-options>
+                    </ion-item-sliding>
+                </ion-list>
+            </ion-item>
+        </ion-reorder-group>
+        <ng-container *ngIf="!undoneTodos.length">
+            <ion-card id="no-data-found-card">
+                <ion-card-content id="app-no-data-image">
+                    <ion-label>NO UNDONE TODOS FOUND! </ion-label>
+                    <ion-img src="./assets/images/no-data-found.png"></ion-img>
+                </ion-card-content>
+            </ion-card>
+        </ng-container>
+        <ion-item id="todosDivider">
+            <ion-label>DONE ITEMS</ion-label>
+        </ion-item>
+        <ion-reorder-group (ionItemReorder)="doReorderDoneTodos($event)" disabled="false">
+            <ion-item lines="none" *ngFor="let todo of doneTodos; let i = index" (press)="showRadioButton()">
+                <ion-list lines="none">
+                    <ion-item-sliding (click)="isClick? viewTodo(todo.id) : ''">
+                        <ion-item-options side="start"></ion-item-options>
+                        <ion-item>
+                            <ion-card>
+                                <ion-card-content>
+                                    <div id="todo-title-heading">
+                                        <ion-reorder slot="start"></ion-reorder>
+                                        <ion-label>{{todo.title}}</ion-label>
+                                    </div>
+                                    <ng-container *ngIf="showCheckbox === true">
+                                        <ion-checkbox slot="end" (ionChange)="getChecked($event, todo, i)" color="dark"></ion-checkbox>
+                                    </ng-container>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-item>
+                        <ion-item-options side="end" (ionSwipe)="moveToUndone(todo, i)"></ion-item-options>
+                    </ion-item-sliding>
+                </ion-list>
+            </ion-item>
+        </ion-reorder-group>
+        <ng-container *ngIf="!doneTodos.length">
+            <ion-card id="no-data-found-card">
+                <ion-card-content id="app-no-data-image1">
+                    <ion-label>NO DONE TODOS FOUND!</ion-label>
+                    <ion-img src="./assets/images/no-data-found1.png"></ion-img>
+                </ion-card-content>
+            </ion-card>
+        </ng-container>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button (click)="createTodo()" color="primary">
+                <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </ng-template>
+    <ng-container *ngIf="showCheckbox === true">
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button (click)="removeTodos()" color="primary">
+                <ion-icon name="trash"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </ng-container>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>

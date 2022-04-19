@@ -1,0 +1,24 @@
+<ion-header class="ion-padding">
+    <ion-icon name="arrow-back-outline" (click)="getPreviousPage()"></ion-icon>
+    <ion-title>View Todo</ion-title>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content>
+            <ion-label position="floating">Title</ion-label>
+            <ion-input type="text" readonly="true" value="{{todo.title}}"></ion-input>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea readonly="true">{{todo.description}}</ion-textarea>
+        </ion-card-content>
+    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button (click)="editTodo()" color="primary">
+            <ion-icon name="create"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

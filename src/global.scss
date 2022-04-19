@@ -1,4 +1,4 @@
-/*
+    /*
  * App Global CSS
  * ----------------------------------------------------------------------------
  * Put style rules here that you want to apply globally. These styles are for
@@ -8,19 +8,310 @@
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
+    /* Core CSS required for Ionic components to work properly */
 
-/* Core CSS required for Ionic components to work properly */
-@import "~@ionic/angular/css/core.css";
+    @import "~@ionic/angular/css/core.css";
+    /* Basic CSS for apps built with Ionic */
 
-/* Basic CSS for apps built with Ionic */
-@import "~@ionic/angular/css/normalize.css";
-@import "~@ionic/angular/css/structure.css";
-@import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+    @import "~@ionic/angular/css/normalize.css";
+    @import "~@ionic/angular/css/structure.css";
+    @import "~@ionic/angular/css/typography.css";
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+    @import '~@ionic/angular/css/display.css';
+    /* Optional CSS utils that can be commented out */
 
-/* Optional CSS utils that can be commented out */
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
-@import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
+    @import "~@ionic/angular/css/padding.css";
+    @import "~@ionic/angular/css/float-elements.css";
+    @import "~@ionic/angular/css/text-alignment.css";
+    @import "~@ionic/angular/css/text-transformation.css";
+    @import "~@ionic/angular/css/flex-utils.css";
+    .ios ion-header {
+        padding-top: 1rem !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .ios ion-header ion-icon:first-child {
+        font-size: 1.5rem;
+    }
+
+    .ios ion-searchbar ion-icon {
+        right: 16px !important;
+        left: auto !important;
+    }
+
+    .ios .searchbar-input.sc-ion-searchbar-ios {
+        font-weight: 300;
+        font-size: 15px;
+    }
+
+    .ios .searchbar-input-container.sc-ion-searchbar-ios {
+        height: 50px;
+    }
+
+    .ios .sc-ion-searchbar-ios-h {
+        --border-radius: 3px;
+        padding-inline-start: 16px;
+        padding-inline-end: 16px;
+    }
+
+    .ios .searchbar-clear-button.sc-ion-searchbar-ios {
+        right: 2.5rem;
+    }
+
+    .ios ion-title {
+        font-weight: 400;
+    }
+
+    .ios ion-checkbox {
+        margin: 0px;
+    }
+
+    .ios ion-toast {
+        --border-radius: 2px;
+    }
+
+    .ios ion-alert .alert-wrapper.sc-ion-alert-ios {
+        border-radius: 3px !important;
+    }
+
+    .ios ion-alert .alert-title.sc-ion-alert-ios {
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .alert-message.sc-ion-alert-ios {
+        font-weight: 300;
+        letter-spacing: 0.5px;
+    }
+
+    .ios .alert-button.sc-ion-alert-ios .alert-button-inner.sc-ion-alert-ios {
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    .ios ion-fab-button {
+        --ion-color-primary: #1c1c1d !important;
+    }
+
+    .ios ion-label {
+        font-weight: 600;
+    }
+
+    .ios .emptyFieldAlert h2 {
+        color: #cd0505 !important;
+        font-weight: 600 !important;
+    }
+
+    // loading backdrop
+    .ios ion-backdrop {
+        --backdrop-opacity: var(--ion-backdrop-opacity, 0.97);
+    }
+
+    .ios .emptyFieldAlert ion-backdrop {
+        --backdrop-opacity: var(--ion-backdrop-opacity, 0.7);
+    }
+
+    .ios .loading-content.sc-ion-loading-ios {
+        font-weight: 200;
+    }
+
+    .ios .spinner-lines.sc-ion-loading-ios,
+    .spinner-lines-small.sc-ion-loading-ios,
+    .spinner-bubbles.sc-ion-loading-ios,
+    .spinner-circles.sc-ion-loading-ios,
+    .spinner-crescent.sc-ion-loading-ios,
+    .spinner-dots.sc-ion-loading-ios {
+        color: #00b8ff;
+    }
+
+    .ios .loading-wrapper.sc-ion-loading-ios {
+        border-radius: 3px;
+    }
+
+    //
+    .ios #todo-btn-save {
+        width: 100%;
+        padding: 0px 16px;
+    }
+
+    .ios #todo-btn-save ion-fab-button {
+        --border-radius: 5px;
+        width: 100%;
+    }
+
+    // android and web
+    .md ion-header {
+        padding-top: 1rem !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .md ion-header ion-icon:first-child {
+        font-size: 1.5rem;
+    }
+
+    .md ion-searchbar ion-icon {
+        right: 16px !important;
+        left: auto !important;
+    }
+
+    .md ion-card {
+        margin-inline: 16px;
+    }
+
+    .md .searchbar-input.sc-ion-searchbar-md {
+        font-weight: 300;
+        font-size: 15px;
+    }
+
+    .md .searchbar-input-container.sc-ion-searchbar-md {
+        height: 50px;
+    }
+
+    .md .sc-ion-searchbar-md-h {
+        --border-radius: 3px;
+        padding-inline-start: 16px;
+        padding-inline-end: 16px;
+    }
+
+    .md .searchbar-clear-button.sc-ion-searchbar-md {
+        right: 2.5rem;
+    }
+
+    .md ion-title {
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    .md ion-checkbox {
+        margin: 0px;
+        --border-radius: calc(var(--size) * 1);
+        --border-width: 1px;
+        --background: #121212;
+        --size: 20px;
+    }
+
+    .md ion-toast {
+        --border-radius: 2px;
+        --background: var(--ion-color-step-50, #f2f2f2);
+        --color: #ffffff;
+        font-weight: 300;
+        --ion-color-step-100: #f9f3f3;
+    }
+
+    .md ion-alert .alert-wrapper.sc-ion-alert-md {
+        border-radius: 3px !important;
+    }
+
+    .md ion-alert .alert-title.sc-ion-alert-md {
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .alert-message.sc-ion-alert-md {
+        font-weight: 300;
+        letter-spacing: 0.5px;
+    }
+
+    .md .alert-button.sc-ion-alert-md .alert-button-inner.sc-ion-alert-md {
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    .md ion-fab-button {
+        --ion-color-primary: #1c1c1d !important;
+    }
+
+    .md ion-label {
+        font-weight: 600;
+    }
+
+    .md .emptyFieldAlert h2 {
+        color: #cd0505 !important;
+        font-weight: 600 !important;
+    }
+
+    // loading backdrop
+    .md ion-backdrop {
+        --backdrop-opacity: var(--ion-backdrop-opacity, 0.97);
+    }
+
+    .md .emptyFieldAlert ion-backdrop {
+        --backdrop-opacity: var(--ion-backdrop-opacity, 0.7);
+    }
+
+    .md .loading-content.sc-ion-loading-md {
+        font-weight: 200;
+    }
+
+    .md .spinner-lines.sc-ion-loading-md,
+    .spinner-lines-small.sc-ion-loading-md,
+    .spinner-bubbles.sc-ion-loading-md,
+    .spinner-circles.sc-ion-loading-md,
+    .spinner-crescent.sc-ion-loading-md,
+    .spinner-dots.sc-ion-loading-md {
+        color: #00b8ff;
+    }
+
+    .md .loading-wrapper.sc-ion-loading-md {
+        border-radius: 3px;
+    }
+
+    //
+    .md #todo-btn-save {
+        width: 100%;
+        padding: 0px 16px;
+    }
+
+    .md #todo-btn-save ion-fab-button {
+        --border-radius: 5px;
+        width: 100%;
+    }
+
+    .md ion-searchbar ion-icon {
+        right: 16px !important;
+        left: auto !important;
+    }
+
+    .md .sc-ion-searchbar-md-h {
+        padding-inline-start: 16px;
+        padding-inline-end: 16px;
+        --background: #1e1e1e;
+    }
+
+    .md .searchbar-input-container.sc-ion-searchbar-md {
+        height: 50px;
+    }
+
+    .md .searchbar-input.sc-ion-searchbar-md {
+        padding-inline-start: 20px;
+        padding-inline-end: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .md .searchbar-clear-icon.sc-ion-searchbar-md {
+        margin-right: 0.2rem;
+    }
+
+    .md .searchbar-search-icon.sc-ion-searchbar-md {
+        top: 15px;
+    }
+
+    .md .list-md {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .md #todo-container ion-item {
+        --background: unset !important;
+    }
+
+    .md ion-list {
+        background-color: unset;
+    }
+
+    .md ion-fab-button {
+        --ion-color-base: #1e1e1e !important;
+    }

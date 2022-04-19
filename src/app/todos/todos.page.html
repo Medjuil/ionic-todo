@@ -1,0 +1,24 @@
+<ion-header class="ion-padding">
+    <ion-icon name="arrow-back-outline" (click)="getPreviousPage()"></ion-icon>
+    <ion-title>Create New Todo</ion-title>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content>
+            <ion-label position="floating">Todo title</ion-label>
+            <ion-input [(ngModel)]="todo.title" type="text" placeholder="Enter todo title..."></ion-input>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+            <ion-label position="floating">Todo description</ion-label>
+            <ion-textarea [(ngModel)]="todo.description" placeholder="Enter todo description..."></ion-textarea>
+        </ion-card-content>
+    </ion-card>
+    <ion-fab id="todo-btn-save" vertical="middle" horizontal="middle">
+        <ion-fab-button (click)="addTodo()" color="primary">
+            Save new todo
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
